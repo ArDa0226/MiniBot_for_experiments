@@ -22,9 +22,9 @@ class FirstOuterMiddleware(BaseMiddleware):
         )
 
         #result = await handler(event, data)
-        return
+        #return
 
-        #logger.debug('Выходим из миддлвари  %s', __class__.__name__)
+        logger.debug('Выходим из миддлвари  %s', __class__.__name__)
 
 
 
