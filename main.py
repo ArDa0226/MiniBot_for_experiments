@@ -40,7 +40,7 @@ async def main() -> None:
 
     # Здесь будем регистрировать миддлвари
     # ...
-
+    dp.update.outer_middleware(FirstOuterMiddleware())
     # Запускаем polling
     await dp.start_polling(bot)
 
