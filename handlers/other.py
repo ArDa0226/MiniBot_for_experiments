@@ -2,7 +2,7 @@ import logging
 
 from aiogram import Router
 from aiogram.types import Message
-from filters.filters import MyTrueFilter
+from filters.filters import MyTrueFilter, MyFalseFilter
 from lexicon.lexicon import LEXICON_RU
 
 logger = logging.getLogger(__name__)
@@ -13,7 +13,7 @@ other_router = Router()
 
 # Этот хэндлер будет срабатывать на любые сообщения,
 # кроме тех, для которых есть отдельные хэндлеры
-@other_router.message(MyTrueFilter())
+@other_router.message(MyFalseFilter())
 async def send_echo(message: Message):
     logger.debug("Вошли в эхо-хэндлер")
     try:

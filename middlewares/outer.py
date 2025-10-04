@@ -21,11 +21,12 @@ class FirstOuterMiddleware(BaseMiddleware):
             event.__class__.__name__
         )
 
-        result = await handler(event, data)
+        #result = await handler(event, data)
+        return
 
-        logger.debug('Выходим из миддлвари  %s', __class__.__name__)
+        #logger.debug('Выходим из миддлвари  %s', __class__.__name__)
 
-        return result
+
 
 
 class SecondOuterMiddleware(BaseMiddleware):
