@@ -15,6 +15,7 @@ from middlewares.outer import (
     SecondOuterMiddleware,
     ThirdOuterMiddleware,
 )
+from middlewares.shadow_ban_middleware import ShadowBanMiddleware
 
 # Инициализируем логгер модуля
 logger = logging.getLogger(__name__)
@@ -46,6 +47,7 @@ async def main() -> None:
     user_router.message.middleware(FirstInnerMiddleware())
     user_router.message.middleware(SecondInnerMiddleware())
     other_router.message.middleware(ThirdInnerMiddleware())
+    dp.update.middleware(ShadowBanMiddleware())
     # Запускаем polling
     await dp.start_polling(bot)
 
