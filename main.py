@@ -16,6 +16,7 @@ from middlewares.outer import (
     ThirdOuterMiddleware,
 )
 from middlewares.shadow_ban_middleware import ShadowBanMiddleware
+from middlewares.throttling_middleware import ThrottlingMiddleware
 
 # Инициализируем логгер модуля
 logger = logging.getLogger(__name__)
@@ -48,6 +49,9 @@ async def main() -> None:
     user_router.message.middleware(SecondInnerMiddleware())
     other_router.message.middleware(ThirdInnerMiddleware())
     dp.update.middleware(ShadowBanMiddleware())
+    #Инициализация тротлинг миддлвари для "удушения" апдейтов пользователей и сохранения
+    #Бота от перегрузки.
+    dp.update.middleware(ThrottlingMiddleware())
     # Запускаем polling
     await dp.start_polling(bot)
 
