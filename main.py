@@ -5,6 +5,7 @@ from aiogram import Bot, Dispatcher
 from config.config import Config, load_config
 from handlers.other import other_router
 from handlers.user import user_router
+from middlewares.i18n import TranslatorMiddleware
 from middlewares.inner import (
     FirstInnerMiddleware,
     SecondInnerMiddleware,
@@ -60,6 +61,8 @@ async def main() -> None:
     #Инициализация тротлинг миддлвари для "удушения" апдейтов пользователей и сохранения
     #Бота от перегрузки.
     dp.update.middleware(ThrottlingMiddleware())
+    #Миддлварь для трансязычности бота.
+    dp.update.middleware(TranslatorMiddleware())
     # Запускаем polling
     await dp.start_polling(bot, translations=translations)
 
