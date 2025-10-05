@@ -17,9 +17,17 @@ from middlewares.outer import (
 )
 from middlewares.shadow_ban_middleware import ShadowBanMiddleware
 from middlewares.throttling_middleware import ThrottlingMiddleware
+from lexicon.lexicon_ru import LEXICON_RU
+from lexicon.lexicon_en import LEXICON_EN
 
 # Инициализируем логгер модуля
 logger = logging.getLogger(__name__)
+
+translations = {
+    'default': 'ru',
+    'ru': LEXICON_RU,
+    'en': LEXICON_EN,
+}
 
 
 # Функция конфигурирования и запуска бота
@@ -53,7 +61,7 @@ async def main() -> None:
     #Бота от перегрузки.
     dp.update.middleware(ThrottlingMiddleware())
     # Запускаем polling
-    await dp.start_polling(bot)
+    await dp.start_polling(bot, translations=translations)
 
 
 asyncio.run(main())
