@@ -14,10 +14,10 @@ other_router = Router()
 # Этот хэндлер будет срабатывать на любые сообщения,
 # кроме тех, для которых есть отдельные хэндлеры
 @other_router.message(MyTrueFilter())
-async def send_echo(message: Message):
+async def send_echo(message: Message, i18n: dict[str, str]):
     logger.debug("Вошли в эхо-хэндлер")
     try:
         await message.send_copy(chat_id=message.chat.id)
     except TypeError:
-        await message.reply(text=LEXICON_RU["no_echo"])
+        await message.reply(text=i18n.get("no_echo"))
     logger.debug("Выходим из эхо-хэндлера")
