@@ -51,16 +51,17 @@ async def main() -> None:
 
     # Здесь будем регистрировать миддлвари
     # ...
-    dp.update.outer_middleware(FirstOuterMiddleware())
-    user_router.callback_query.outer_middleware(SecondOuterMiddleware())
+    dp.update.middleware(FirstInnerMiddleware())
+    #user_router.callback_query.outer_middleware(SecondOuterMiddleware())
     other_router.message.outer_middleware(ThirdOuterMiddleware())
-    user_router.message.middleware(FirstInnerMiddleware())
-    user_router.message.middleware(SecondInnerMiddleware())
-    other_router.message.middleware(ThirdInnerMiddleware())
-    dp.update.middleware(ShadowBanMiddleware())
+    #user_router.message.middleware(FirstInnerMiddleware())
+    #user_router.message.middleware(SecondInnerMiddleware())
+    #other_router.message.middleware(ThirdInnerMiddleware())
+    #Инициализация миддлвари теневого бана.
+    #dp.update.middleware(ShadowBanMiddleware())
     #Инициализация тротлинг миддлвари для "удушения" апдейтов пользователей и сохранения
     #Бота от перегрузки.
-    dp.update.middleware(ThrottlingMiddleware())
+    #dp.update.middleware(ThrottlingMiddleware())
     #Миддлварь для трансязычности бота.
     dp.update.middleware(TranslatorMiddleware())
     # Запускаем polling

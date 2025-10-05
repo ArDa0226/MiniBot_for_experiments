@@ -41,7 +41,7 @@ async def process_button_click(callback: CallbackQuery, i18n: dict[str, str]):
 
 # Это хэндлер, который мог бы обрабатывать любой текст,
 # но `MyFalseFilter` его не пропустит
-@user_router.message(F.text, MyTrueFilter())
+@user_router.message(F.text, MyFalseFilter())
 async def process_text(message: Message):
     logger.debug("Вошли в хэндлер, обрабатывающий текст")
     logger.debug("Выходим из хэндлера, обрабатывающего текст")

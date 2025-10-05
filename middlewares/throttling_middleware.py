@@ -1,4 +1,3 @@
-from cgitb import handler
 from typing import Any, Awaitable, Callable
 
 from aiogram import BaseMiddleware
@@ -13,7 +12,7 @@ class ThrottlingMiddleware(BaseMiddleware):
 
     async def __call__(
             self,
-            handlers: Callable[[TelegramObject, dict[str, Any]], Awaitable[Any]],
+            handler: Callable[[TelegramObject, dict[str, Any]], Awaitable[Any]],
             event: TelegramObject,
             data: dict[str, Any],
     ) -> Any:
